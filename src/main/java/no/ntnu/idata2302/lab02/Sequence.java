@@ -7,6 +7,8 @@
  */
 package no.ntnu.idata2302.lab02;
 
+import java.util.Arrays;
+
 /**
  * Implement the Sequence ADT from Lecture 2.2
  *
@@ -65,23 +67,77 @@ public class Sequence {
     }
 
     /**
-     * Append the given item at the end of the sequence
+     * Inserts an item at a given index.
+     *
+     * <p>Shifts original item at index, and all consecutive items,
+     * one step to the right.</p>
      *
      * @param item the item that must be inserted
      */
     public void insert(int item, int index) {
-        // TODO: Implement
-        throw new RuntimeException("Not yet implemented.");
+      // Check parameters
+      // Index out of bounds
+      if (index < 1 || index > length + 1) {
+          throw new IllegalArgumentException("Invalid index!");
+      }
+
+      // Resize if needed
+      //if (length == capacity) {
+      //    int newCapacity = capacity * 2;
+      //    int[] newItems = new int[newCapacity];
+      //    for (int i = 0; i < length; i++) {
+      //        newItems[i] = items[i];
+      //    }
+      //    items = newItems;
+      //    capacity = newCapacity;
+      //}
+      // Styvian Alternative
+      if (length == capacity) {
+        int newCapacity = capacity * 2;
+        items = java.util.Arrays.copyOf(items, newCapacity);
+      }
+
+      // Move all items beyond (inclusive) the index one step right
+      for (int i = length; i >= index; i--) {
+          items[i] = items[i - 1];
+      }
+      // Insert the new value
+      items[index - 1] = item;
+
+      // Increment the length
+      length++;
     }
 
     /**
-     * Remove the index at the given index
+     * Removes the index at the given index
      *
      * @param index the index that must be removed.
      */
     public void remove(int index) {
-        // TODO: Implement
-        throw new RuntimeException("Not yet implemented.");
+      // Check parameters
+      // Index out of bounds
+      if (index < 1 || index > length + 1) {
+        throw new IllegalArgumentException("Invalid index!");
+      }
+
+      // Halve the capacity if the length of the array
+      // is <= 25% of the current capacity.
+      if (length <= capacity / 4 ) {
+        int newCapacity = (capacity / 2);
+        items = Arrays.copyOf(items, newCapacity);
+        capacity = newCapacity;
+      }
+
+      // Move all items beyond the index (exclusive) one step left,
+      // overwriting the initial value
+      for(int i = length-1; i >= index; i--) {
+        items[i] = items[i+1];
+      }
+      // Clear the last item
+      items[length] = 0;
+
+      // Decrement the length
+      length--;
     }
 
     /**
