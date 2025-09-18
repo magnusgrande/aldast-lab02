@@ -5,15 +5,16 @@
  * All rights reserved.
  *
  */
+
 package no.ntnu.idata2302.lab02;
 
 import java.util.Arrays;
 
 /**
- * Implement the Sequence ADT from Lecture 2.2
+ * Implement the Sequence ADT from Lecture 2.2.
  *
- * The items in the sequence are indexed from 1 (as opposed to Java arrays that
- * are indexed from 0)
+ * <p>The items in the sequence are indexed from 1 (as opposed to Java arrays that
+ * are indexed from 0)</p>
  */
 public class Sequence {
 
@@ -95,9 +96,10 @@ public class Sequence {
       if (length == capacity) {
         int newCapacity = capacity * 2;
         items = java.util.Arrays.copyOf(items, newCapacity);
+        capacity = newCapacity;
       }
 
-      // Move all items beyond (inclusive) the index one step right
+      // Move all items beyond (inclusive) the index one step to the right
       for (int i = length; i >= index; i--) {
           items[i] = items[i - 1];
       }
@@ -109,9 +111,10 @@ public class Sequence {
     }
 
     /**
-     * Removes the index at the given index
+     * Removes the value at the given index and shifts
+     * the rest of the sequence accordingly.
      *
-     * @param index the index that must be removed.
+     * @param index the value that must be removed.
      */
     public void remove(int index) {
       // Check parameters
@@ -141,7 +144,7 @@ public class Sequence {
     }
 
     /**
-     * Find a index where the given item can be found. Returns 0 if that item cannot
+     * Find an index where the given item can be found. Returns 0 if that item cannot
      * be found.
      *
      * @param item the item whose index must be found
