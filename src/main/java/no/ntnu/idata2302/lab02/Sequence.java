@@ -171,15 +171,18 @@ public class Sequence {
    *         second the maximum
    */
   public int[] extrema() {
-    int[] extremaValues = { Integer.MAX_VALUE, Integer.MIN_VALUE };
-    for (int item : items) {
-      if (item > extremaValues[1]) {
-        extremaValues[1] = item;
-      }
+    if (length == 0) {
+      throw new IllegalStateException("No elements in sequence");
+    }
 
-      if (item < extremaValues[0]) {
+    int[] extremaValues = { Integer.MAX_VALUE, Integer.MIN_VALUE };
+
+    for (int i = 0; i < length; i++) {
+      int item = items[i];
+      if (item < extremaValues[0])
         extremaValues[0] = item;
-      }
+      if (item > extremaValues[1])
+        extremaValues[1] = item;
     }
     return extremaValues;
   }
