@@ -206,8 +206,13 @@ public class Sequence {
 
   // O(n log n) solution can be done with
   // sorting an array then checking neighbours.
-  // TODO: Implement O(n log n)
-  //
+  // Arrays.sort(items)
+  // for (int i = 1; i < length; i++) {
+  // if (items[i] == items[i-1]) {
+  // return true
+  // }
+  // }
+  // return false;
   /**
    * Convert the sequence into an Java array
    */
