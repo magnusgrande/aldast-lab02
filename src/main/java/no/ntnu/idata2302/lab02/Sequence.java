@@ -146,11 +146,17 @@ public class Sequence {
      * be found.
      *
      * @param item the item whose index must be found
-     * @return an
+     * @return the (int) index of the item, if it is found, or 0 if not.
      */
     public int search(int item) {
-        // TODO: Implement
-        throw new RuntimeException("Not yet implemented.");
+        int i = 1;
+        while(i <= items.length) {
+          if(items[i-1] == item) {
+            return i;
+          }
+          i++;
+        }
+      return 0;
     }
 
     /**
