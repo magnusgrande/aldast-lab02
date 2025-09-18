@@ -193,6 +193,7 @@ public class Sequence {
    * @return true if the sequence has the the same items at multiple indices
    */
   public boolean hasDuplicate() {
+    // O(n²) solution
     for (int i = 0; i < length; i++) {
       for (int j = i + 1; j < length; j++) {
         if (items[i] == items[j]) {
@@ -203,6 +204,10 @@ public class Sequence {
     return false;
   }
 
+  // O(n log n) solution can be done with
+  // sorting an array then checking neighbours.
+  // TODO: Implement O(n log n)
+  //
   /**
    * Convert the sequence into an Java array
    */
