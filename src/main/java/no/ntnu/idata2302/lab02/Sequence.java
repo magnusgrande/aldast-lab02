@@ -116,31 +116,29 @@ public class Sequence {
      *
      * @param index the value that must be removed.
      */
-    public void remove(int index) {
-      // Check parameters
-      // Index out of bounds
-      if (index < 1 || index > length + 1) {
-        throw new IllegalArgumentException("Invalid index!");
-      }
+public void remove(int index) {
+        // Check parameters
+        if (index < 1 || index > length) {
+            throw new IllegalArgumentException("Invalid index!");
+        }
 
-      // Halve the capacity if the length of the array
-      // is <= 25% of the current capacity.
-      if (length <= capacity / 4 ) {
-        int newCapacity = (capacity / 2);
-        items = Arrays.copyOf(items, newCapacity);
-        capacity = newCapacity;
-      }
+        // Shift items left from index
+        for (int i = index - 1; i < length - 1; i++) {
+            items[i] = items[i + 1];
+        }
 
-      // Move all items beyond the index (exclusive) one step left,
-      // overwriting the initial value
-      for(int i = length-1; i >= index; i--) {
-        items[i] = items[i+1];
-      }
-      // Clear the last item
-      items[length] = 0;
+        // Decrement the length
+        length--;
 
-      // Decrement the length
-      length--;
+        // Clear the last item
+        items[length] = 0;
+
+        // Halve the capacity if the length is <= 25% of the current capacity
+        if (length > 0 && length <= capacity / 4) {
+            int newCapacity = capacity / 2;
+            items = Arrays.copyOf(items, newCapacity);
+            capacity = newCapacity;
+        }
     }
 
     /**
