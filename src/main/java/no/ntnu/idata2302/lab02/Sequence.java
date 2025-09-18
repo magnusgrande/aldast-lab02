@@ -116,7 +116,7 @@ public class Sequence {
      *
      * @param index the value that must be removed.
      */
-public void remove(int index) {
+    public void remove(int index) {
         // Check parameters
         if (index < 1 || index > length) {
             throw new IllegalArgumentException("Invalid index!");
