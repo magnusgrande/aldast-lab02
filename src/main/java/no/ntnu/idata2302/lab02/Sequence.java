@@ -171,19 +171,14 @@ public class Sequence {
    *         second the maximum
    */
   public int[] extrema() {
-    int[] extremaValues = { 0, 0 };
-    for (int i = 1; i < items.length; i++) {
-      if (i == 1) {
-        extremaValues[0] = items[i];
-        extremaValues[1] = items[i];
+    int[] extremaValues = { Integer.MAX_VALUE, Integer.MIN_VALUE };
+    for (int item : items) {
+      if (item > extremaValues[1]) {
+        extremaValues[1] = item;
       }
 
-      if (items[i] > extremaValues[1]) {
-        extremaValues[1] = items[i];
-      }
-
-      if (items[i] < extremaValues[0]) {
-        extremaValues[0] = items[i];
+      if (item < extremaValues[0]) {
+        extremaValues[0] = item;
       }
     }
     return extremaValues;
