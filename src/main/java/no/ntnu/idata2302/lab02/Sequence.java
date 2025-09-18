@@ -193,8 +193,14 @@ public class Sequence {
    * @return true if the sequence has the the same items at multiple indices
    */
   public boolean hasDuplicate() {
-    // TODO: Implement
-    throw new RuntimeException("Not yet implemented.");
+    for (int i = 0; i < length; i++) {
+      for (int j = i + 1; j < length; j++) {
+        if (items[i] == items[j]) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   /**
